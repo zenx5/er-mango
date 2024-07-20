@@ -70,7 +70,7 @@ export default function PlayItem({ params }:{params:{id:string}}) {
             {step===STEPS.CONFIRM && <span className="flex flex-col ">
                 <label className="w-full text-center font-bold opacity-70">Confirmar compra:</label>
                 <span className="w-full text-center">{ quantity } entradas</span>
-                <span className="w-full text-center">Total: { quantity * 100 }</span>
+                <span className="w-full text-center">Total: { quantity * 100 } $</span>
             </span>}
             <span className="flex flex-row justify-center">
                 {step===STEPS.CONFIRM && <button type="submit" className="bg-blue-500 text-white py-1 px-4 rounded">Enviar</button>}

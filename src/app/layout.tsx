@@ -20,7 +20,7 @@ export default function RootLayout({
       <main className="flex flex-col gap-4 w-screen h-screen items-center justify-between p-20">
         <h1 className="font-bold text-4xl">Bienvenido al Teatro er Mango</h1>
         {children}
-        <footer></footer>
+        <footer>Todos los tickes tienen valor de 100$</footer>
       </main>
       </body>
     </html>
