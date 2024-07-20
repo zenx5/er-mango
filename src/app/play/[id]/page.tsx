@@ -6,6 +6,7 @@ import SellModel from "@/tools/models/SellModel"
 import ClientModel from "@/tools/models/ClientModel"
 import { useRouter } from "next/navigation"
 import { useEffect, useState, FormEvent } from "react"
+import Link from "next/link"
 
 const STEPS = {
     SEATS: 0,
@@ -58,22 +59,27 @@ export default function PlayItem({ params }:{params:{id:string}}) {
         }
     }
 
-    return playTheater && <form className="flex flex-col gap-4 p-10 bg-white rounded" onSubmit={handlerSubmit}>
-        <span>Obra: {playTheater.name}</span>
-        {step===STEPS.SEATS && <span className="flex flex-col">
-            <label className="font-bold opacity-70">Numero de entradas:</label>
+    return <>
+        {playTheater && <form className="flex flex-col justify-center gap-4 p-10 bg-white rounded" onSubmit={handlerSubmit}>
+            <span>Obra: {playTheater.name}</span>
+            {step===STEPS.SEATS && <span className="flex flex-col items-center">
+                <label className="font-bold opacity-70">Numero de entradas:</label>
 
-            <Quantity value={quantity} max={playTheater.seats} onChange={handlerQuantity}/>
-        </span>}
-        {step===STEPS.CONFIRM && <span className="flex flex-col ">
-            <label className="w-full text-center font-bold opacity-70">Confirmar compra:</label>
-            <span className="w-full text-center">{ quantity } entradas</span>
-            <span className="w-full text-center">Total: { quantity * 100 }</span>
-        </span>}
-        <span className="flex flex-row justify-center">
-            {step===STEPS.CONFIRM && <button type="submit" className="bg-blue-500 text-white py-1 px-4 rounded">Enviar</button>}
-            {step===STEPS.SEATS && <button type="button" disabled={quantity===0} onClick={()=>setStep(prev => prev + 1)} className="bg-blue-500 text-white py-1 px-4 rounded disabled:bg-slate-400">Continuar</button>}
-        </span>
-    </form>
+                <Quantity value={quantity} max={playTheater.seats} onChange={handlerQuantity}/>
+            </span>}
+            {step===STEPS.CONFIRM && <span className="flex flex-col ">
+                <label className="w-full text-center font-bold opacity-70">Confirmar compra:</label>
+                <span className="w-full text-center">{ quantity } entradas</span>
+                <span className="w-full text-center">Total: { quantity * 100 }</span>
+            </span>}
+            <span className="flex flex-row justify-center">
+                {step===STEPS.CONFIRM && <button type="submit" className="bg-blue-500 text-white py-1 px-4 rounded">Enviar</button>}
+                {step===STEPS.SEATS && <button type="button" disabled={quantity===0} onClick={()=>setStep(prev => prev + 1)} className="bg-blue-500 text-white py-1 px-4 rounded disabled:bg-slate-400">Continuar</button>}
+            </span>
+        </form>}
+        <div className="w-full flex items-center justify-center">
+            <Link href="/" className="bg-white border border-blue-200 rounded-full px-10 py-1">Volver a home</Link>
+        </div>
+    </>
 
 }
